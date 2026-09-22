@@ -1,0 +1,32 @@
+{
+  "project": "Ứng dụng tâm lý học, nhân cách học vào định hướng nghề nghiệp",
+  "version": "v5",
+  "coreNarrative": "Question → Explore → Understand → Connect → Question again",
+  "designDials": {
+    "DESIGN_VARIANCE": "Medium–High",
+    "MOTION_INTENSITY": "Medium–High",
+    "VISUAL_DENSITY": "Medium"
+  },
+  "motionGrammar": [
+    "composition-to-composition",
+    "progressive-reveal",
+    "visual-continuity",
+    "composition-morphing",
+    "typography-choreography"
+  ],
+  "fourFactors": "Superseded: see data/model-data.js (person lenses, work items, relationships with status and sources).",
+  "scenes": [
+    "The Question",
+    "Look through many lenses",
+    "Two sides, one relationship",
+    "Careers read through the work side",
+    "How the research works",
+    "Your next question"
+  ],
+  "motionLayers": [
+    "Micro / feedback",
+    "Section / narrative",
+    "Global / continuity"
+  ],
+  "principle": "Mỗi animation phải giúp người dùng hiểu nghiên cứu hơn; nếu không, không implement."
+}

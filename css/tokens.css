@@ -1,0 +1,131 @@
+/*
+ * Design tokens, three layers:
+ *   1. Primitive  - raw values, never used directly in components
+ *   2. Semantic   - what a value MEANS (person side, work side, stage...)
+ *   3. Component  - values scoped to one component
+ *
+ * Colour carries information on this site:
+ *   amber = person side, teal = work side.
+ * Every use of colour is paired with a text label or a shape, so meaning
+ * never depends on colour alone.
+ * All contrast pairs below were computed and are >= 4.5:1 (WCAG AA).
+ */
+
+:root {
+  /* ---------- 1. Primitive ---------- */
+  --p-sage-50:  #f3f6f1;
+  --p-sage-100: #e7eee4;
+  --p-sage-200: #d2ded0;
+  --p-sage-300: #b9c8b6;
+  --p-paper:    #fbfcf9;
+
+  --p-green-900: #162824;
+  --p-green-700: #3f554e;
+  --p-green-600: #586f67;
+
+  --p-teal-700:  #0d6b63;
+  --p-teal-300:  #74dbcd;
+  --p-amber-800: #9a4e0c;
+  --p-amber-300: #f5b966;
+
+  --p-stage-900: #1c332f;
+  --p-stage-800: #25423d;
+  --p-stage-700: #385b54;
+  --p-stage-text:   #f0f5f2;
+  --p-stage-text-2: #c4d6cf;
+  --p-stage-muted:  #94b1a8;
+
+  --p-font-display: 'Fraunces', 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+  --p-font-body: 'Be Vietnam Pro', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+
+  /* ---------- 2. Semantic ---------- */
+  --bg:        var(--p-sage-50);
+  --bg-alt:    var(--p-sage-100);
+  --surface:   var(--p-paper);
+  --text:      var(--p-green-900);
+  --text-2:    var(--p-green-700);
+  --text-3:    var(--p-green-600);
+  --line:      var(--p-sage-200);
+  --line-strong: var(--p-sage-300);
+
+  --person:        var(--p-amber-800);   /* person side, on light */
+  --work:          var(--p-teal-700);    /* work side and primary accent, on light */
+  --focus:         var(--p-teal-700);
+
+  --stage-bg:      var(--p-stage-900);
+  --stage-raised:  var(--p-stage-800);
+  --stage-line:    var(--p-stage-700);
+  --stage-text:    var(--p-stage-text);
+  --stage-text-2:  var(--p-stage-text-2);
+  --stage-muted:   var(--p-stage-muted);
+  --stage-person:  var(--p-amber-300);   /* person side, on stage */
+  --stage-work:    var(--p-teal-300);    /* work side, on stage */
+  --stage-focus:   var(--p-teal-300);
+
+  /* Dual-tone accents */
+  --accent-dark:      var(--p-stage-900);
+  --accent-dark-text: var(--p-stage-text);
+
+  /* Type */
+  --font-display: var(--p-font-display);
+  --font-body:    var(--p-font-body);
+
+  --fs-hero:  clamp(2.4rem, 1.35rem + 4.6vw, 5.1rem);
+  --fs-h2:    clamp(1.95rem, 1.3rem + 2.7vw, 3.6rem);
+  --fs-h3:    clamp(1.4rem, 1.15rem + 1vw, 2rem);
+  --fs-q:     clamp(1.55rem, 1.15rem + 1.9vw, 2.7rem);
+  --fs-lead:  clamp(1.0625rem, 1rem + .3vw, 1.25rem);
+  --fs-body:  1.0625rem;
+  --fs-small: .9375rem;
+  --fs-label: .8125rem;
+
+  /* Space, 4px rhythm */
+  --s-1: .25rem;
+  --s-2: .5rem;
+  --s-3: .75rem;
+  --s-4: 1rem;
+  --s-5: 1.5rem;
+  --s-6: 2rem;
+  --s-7: 3rem;
+  --s-8: 4.5rem;
+  --section-y: clamp(4.5rem, 2.5rem + 8vw, 9rem);
+  --gutter: clamp(1.125rem, 4vw, 3rem);
+  --container: 1200px;
+
+  /* Radius: tight on inner elements, soft on containers */
+  --r-sm: 8px;
+  --r-md: 14px;
+  --r-lg: 28px;
+  --r-pill: 999px;
+
+  /* Shadow, tinted toward the soft forest ink colour */
+  --shadow-sm: 0 1px 3px rgba(22, 40, 36, .06);
+  --shadow-md: 0 12px 30px -16px rgba(22, 40, 36, .18);
+
+  /* Motion */
+  --ease: cubic-bezier(.32, .72, 0, 1);
+  --ease-out: cubic-bezier(.16, 1, .3, 1);
+  --t-micro: 180ms;
+  --t-normal: 360ms;
+  --t-scene: 700ms;
+
+  /* Layers, no arbitrary z-index values */
+  --z-header: 40;
+  --z-menu: 30;
+  --z-skip: 60;
+
+  /* ---------- 3. Component ---------- */
+  --header-h: 60px;
+  --header-inset: 10px;
+  --btn-h: 52px;
+  --node-h: 56px;
+  --tap: 44px;
+}
+
+@media (max-width: 560px) {
+  :root {
+    --header-h: 56px;
+    --header-inset: 8px;
+    --node-h: 54px;
+  }
+}
