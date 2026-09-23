@@ -1,9 +1,12 @@
 <!doctype html>
+<!-- Hallmark · macrostructure: Marquee Hero + pinned Object scene · theme: cinematic dark, scene-shifting ground
+     accent: amber (person) / teal (work), semantic · studied: yes · DNA-source: video (user reference)
+     Structure, rhythm and motion language were learned from the reference; its imagery and copy were not used. -->
 <html lang="vi">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#f3f6f1">
+<meta name="theme-color" content="#070a09">
 <title>Hiểu mình — Hiểu nghề</title>
 <meta name="description" content="Một trải nghiệm nghiên cứu về cách tâm lý học, nhân cách học và thông tin nghề nghiệp có thể giúp chúng ta đặt câu hỏi tốt hơn về sự phù hợp nghề nghiệp.">
 <meta property="og:type" content="website">
@@ -11,8 +14,7 @@
 <meta property="og:description" content="Đặt đặc điểm của con người cạnh đặc điểm của công việc. Không chấm điểm, không chọn nghề thay bạn.">
 <meta property="og:locale" content="vi_VN">
 <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
-<link rel="preload" href="assets/fonts/fraunces-vietnamese-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/fonts/fraunces-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/be-vietnam-pro-vietnamese-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/be-vietnam-pro-vietnamese-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/be-vietnam-pro-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/tokens.css">
@@ -23,15 +25,13 @@
 <a class="skip-link" href="#main">Bỏ qua, đến nội dung chính</a>
 <div id="top" class="top-sentinel" aria-hidden="true"></div>
 
+<!-- Giant wordmark that docks into the header on load (JS only) -->
+<div class="dock" id="dock" aria-hidden="true">Hiểu mình</div>
+
 <header class="site-header" id="site-header">
   <div class="header-bar">
     <a class="brand" href="#top" aria-label="Hiểu mình — Hiểu nghề, về đầu trang">
-      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
-        <path d="M9 19 C 15 19, 17 13, 23 13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-        <circle cx="8" cy="19" r="4.5" class="mark-person"/>
-        <circle cx="24" cy="13" r="4.5" class="mark-work"/>
-      </svg>
-      <span class="brand-name">Hiểu mình <span class="brand-dash" aria-hidden="true">—</span> Hiểu nghề</span>
+      <span class="brand-word" id="brand-word">Hiểu mình</span>
     </a>
     <nav class="nav" aria-label="Điều hướng chính">
       <a href="#lenses">Bản thân</a>
@@ -61,137 +61,223 @@
   </noscript>
 
   <!-- 1. Câu hỏi mở đầu -->
-  <section class="hero" id="hero" aria-labelledby="hero-title">
-    <div class="container hero-grid">
-      <div class="hero-copy">
-        <h1 class="hero-title" id="hero-title">Bạn đang chọn một nghề, hay đang chọn một phiên bản của chính mình?</h1>
-        <p class="lead hero-lead">Trước khi tìm một nghề phù hợp, hãy thử nhìn lại những gì tạo nên cách bạn trải nghiệm và thực hiện công việc.</p>
-        <div class="hero-actions">
-          <a class="btn btn--primary" href="#model">Khám phá mô hình</a>
-          <a class="btn btn--text" href="#lenses">Bắt đầu từ câu hỏi</a>
+  <section class="hero" id="hero" data-ground="hero" aria-labelledby="hero-title">
+    <div class="container">
+      <div class="hero-top">
+        <h1 class="hero-title hero-reveal" id="hero-title">Bạn đang chọn một nghề, hay đang chọn một phiên bản của chính mình?</h1>
+        <div class="hero-side hero-reveal">
+          <p class="mono-text">Trước khi tìm một nghề phù hợp, hãy thử nhìn lại những gì tạo nên cách bạn trải nghiệm và thực hiện công việc.</p>
+          <p class="mono-text mono-text--dim">Trải nghiệm này không chấm điểm và không gợi ý nghề cho bạn.</p>
+          <a class="mono-link" href="#model">Khám phá mô hình</a>
         </div>
-        <p class="hero-note">Trải nghiệm này không chấm điểm và không gợi ý nghề cho bạn.</p>
       </div>
 
-      <figure class="hero-figure">
-        <div class="stage stage--hero">
-          <canvas class="hero-canvas" id="hero-flow-canvas" aria-hidden="true"></canvas>
-          <svg class="hero-svg" viewBox="0 0 440 380" aria-hidden="true" focusable="false">
-            <defs>
-              <linearGradient id="hero-grad" gradientUnits="userSpaceOnUse" x1="110" y1="0" x2="330" y2="0">
-                <stop offset="0" stop-color="#f5b966"/>
-                <stop offset="1" stop-color="#74dbcd"/>
-              </linearGradient>
-            </defs>
-            <text class="svg-title svg-title--person" x="110" y="46" text-anchor="middle">Phía người</text>
-            <text class="svg-title svg-title--work" x="330" y="46" text-anchor="middle">Phía công việc</text>
-            <line class="svg-rail" x1="110" y1="92" x2="110" y2="322"/>
-            <line class="svg-rail" x1="330" y1="92" x2="330" y2="322"/>
-            <circle class="svg-dot svg-dot--person" cx="110" cy="92"  r="10"/>
-            <circle class="svg-dot svg-dot--person" cx="110" cy="169" r="10"/>
-            <circle class="svg-dot svg-dot--person" cx="110" cy="246" r="10"/>
-            <circle class="svg-dot svg-dot--person is-on" cx="110" cy="322" r="10"/>
-            <circle class="svg-dot svg-dot--work" cx="330" cy="92"  r="10"/>
-            <circle class="svg-dot svg-dot--work is-on" cx="330" cy="169" r="10"/>
-            <circle class="svg-dot svg-dot--work" cx="330" cy="246" r="10"/>
-            <circle class="svg-dot svg-dot--work" cx="330" cy="322" r="10"/>
-            <path class="svg-link" d="M122 322 C 226 322, 214 169, 318 169" pathLength="1" stroke="url(#hero-grad)"/>
-            <circle class="svg-mid" cx="220" cy="245.5" r="6"/>
-          </svg>
-        </div>
-        <figcaption class="figure-caption">Hai phía, một mối quan hệ để khám phá: con người ở bên trái, công việc ở bên phải.</figcaption>
+      <figure class="hero-object hero-reveal" id="hero-object" role="img" aria-label="Sơ đồ minh họa: bốn mục phía người và bốn mục phía công việc, một cặp được nối bằng một đường.">
+        <svg class="hero-svg hero-svg--wide" viewBox="0 0 1200 460" aria-hidden="true" focusable="false">
+          <defs>
+            <linearGradient id="hw-grad" gradientUnits="userSpaceOnUse" x1="442" y1="0" x2="758" y2="0">
+              <stop offset="0" stop-color="#f2b45c"/><stop offset="1" stop-color="#6fd3c6"/>
+            </linearGradient>
+          </defs>
+          <text class="svg-title svg-title--person" x="430" y="64" text-anchor="end">Phía người</text>
+          <text class="svg-title svg-title--work" x="770" y="64">Phía công việc</text>
+          <line class="svg-rail" x1="430" y1="130" x2="430" y2="370"/>
+          <line class="svg-rail" x1="770" y1="130" x2="770" y2="370"/>
+          <g class="svg-labels">
+            <text class="svg-label" x="406" y="135" text-anchor="end">Sở thích nghề nghiệp</text>
+            <text class="svg-label" x="406" y="215" text-anchor="end">Giá trị công việc</text>
+            <text class="svg-label" x="406" y="295" text-anchor="end">Năng lực</text>
+            <text class="svg-label svg-label--on-person" x="406" y="375" text-anchor="end">Cách làm việc</text>
+            <text class="svg-label" x="794" y="135">Hoạt động / nhiệm vụ</text>
+            <text class="svg-label svg-label--on-work" x="794" y="215">Bối cảnh làm việc</text>
+            <text class="svg-label" x="794" y="295">Yêu cầu của nghề</text>
+            <text class="svg-label" x="794" y="375">Giá trị của công việc</text>
+          </g>
+          <circle class="svg-dot svg-dot--person" cx="430" cy="130" r="10"/>
+          <circle class="svg-dot svg-dot--person" cx="430" cy="210" r="10"/>
+          <circle class="svg-dot svg-dot--person" cx="430" cy="290" r="10"/>
+          <circle class="svg-dot svg-dot--person is-on" cx="430" cy="370" r="10"/>
+          <circle class="svg-dot svg-dot--work" cx="770" cy="130" r="10"/>
+          <circle class="svg-dot svg-dot--work is-on" cx="770" cy="210" r="10"/>
+          <circle class="svg-dot svg-dot--work" cx="770" cy="290" r="10"/>
+          <circle class="svg-dot svg-dot--work" cx="770" cy="370" r="10"/>
+          <path class="svg-link" d="M442 370 C 600 370, 600 210, 758 210" pathLength="1" stroke="url(#hw-grad)"/>
+          <circle class="svg-mid" cx="600" cy="290" r="6"/>
+        </svg>
+        <svg class="hero-svg hero-svg--tall" viewBox="0 0 360 440" aria-hidden="true" focusable="false">
+          <defs>
+            <linearGradient id="ht-grad" gradientUnits="userSpaceOnUse" x1="122" y1="0" x2="238" y2="0">
+              <stop offset="0" stop-color="#f2b45c"/><stop offset="1" stop-color="#6fd3c6"/>
+            </linearGradient>
+          </defs>
+          <text class="svg-title svg-title--person" x="110" y="46" text-anchor="middle">Người</text>
+          <text class="svg-title svg-title--work" x="250" y="46" text-anchor="middle">Công việc</text>
+          <line class="svg-rail" x1="110" y1="110" x2="110" y2="350"/>
+          <line class="svg-rail" x1="250" y1="110" x2="250" y2="350"/>
+          <circle class="svg-dot svg-dot--person" cx="110" cy="110" r="10"/>
+          <circle class="svg-dot svg-dot--person" cx="110" cy="190" r="10"/>
+          <circle class="svg-dot svg-dot--person" cx="110" cy="270" r="10"/>
+          <circle class="svg-dot svg-dot--person is-on" cx="110" cy="350" r="10"/>
+          <circle class="svg-dot svg-dot--work" cx="250" cy="110" r="10"/>
+          <circle class="svg-dot svg-dot--work is-on" cx="250" cy="190" r="10"/>
+          <circle class="svg-dot svg-dot--work" cx="250" cy="270" r="10"/>
+          <circle class="svg-dot svg-dot--work" cx="250" cy="350" r="10"/>
+          <path class="svg-link" d="M122 350 C 186 350, 186 190, 238 190" pathLength="1" stroke="url(#ht-grad)"/>
+          <circle class="svg-mid" cx="180" cy="270" r="6"/>
+        </svg>
       </figure>
     </div>
   </section>
 
-  <!-- 2. Các lăng kính nhìn vào bản thân -->
-  <section class="section section--alt" id="lenses" aria-labelledby="lenses-title">
-    <div class="container split">
-      <div class="split-head">
-        <h2 class="h2" id="lenses-title">Nhìn vào bản thân qua nhiều lăng kính</h2>
-        <p class="lead">Trước khi hỏi “Nghề nào?”, hãy hỏi những câu giúp mình mô tả bản thân rõ hơn. Mỗi câu hỏi dưới đây là một lăng kính, không phải một thành phần để cộng lại thành đáp án.</p>
+  <!-- Dải câu hỏi: nhắc lại bốn câu hỏi, không mang thông tin mới -->
+  <div class="ticker" id="ticker" aria-hidden="true">
+    <div class="ticker-skew">
+      <div class="ticker-track">
+        <span>Tôi thích điều gì?</span><i></i><span>Tôi coi trọng điều gì?</span><i></i><span>Tôi làm tốt điều gì?</span><i></i><span>Tôi làm việc tốt trong điều kiện nào?</span><i></i>
+        <span>Tôi thích điều gì?</span><i></i><span>Tôi coi trọng điều gì?</span><i></i><span>Tôi làm tốt điều gì?</span><i></i><span>Tôi làm việc tốt trong điều kiện nào?</span><i></i>
       </div>
-      <ul class="lens-list" aria-label="Bốn lăng kính phía người">
-        <li class="lens reveal" style="--i:0">
-          <div class="lens-body">
-            <p class="lens-q">Tôi thích điều gì?</p>
-            <p class="lens-name"><span class="dot dot--person" aria-hidden="true"></span>Sở thích nghề nghiệp</p>
-            <p class="lens-desc">Những hoạt động và lĩnh vực thu hút sự chú ý, hứng thú của một người.</p>
-          </div>
-          <a class="btn btn--small" href="#model" data-jump-lens="interests">Xem trong mô hình</a>
+    </div>
+  </div>
+
+  <!-- 2. Các lăng kính nhìn vào bản thân -->
+  <section class="section" id="lenses" data-ground="hero" aria-labelledby="lenses-title">
+    <div class="container">
+      <div class="head-row">
+        <div class="head-row-main">
+          <h2 class="h2" id="lenses-title" data-lines>Nhìn vào bản thân qua nhiều lăng kính</h2>
+          <p class="lead">Trước khi hỏi “Nghề nào?”, hãy hỏi những câu giúp mình mô tả bản thân rõ hơn. Mỗi câu hỏi dưới đây là một lăng kính, không phải một thành phần để cộng lại thành đáp án.</p>
+        </div>
+        <a class="mono-link" href="#model">Xem trong mô hình</a>
+      </div>
+
+      <ul class="lens-grid" aria-label="Bốn lăng kính phía người">
+        <li class="lens lens--a" data-parallax=".05">
+          <a class="lens-link" href="#model" data-jump-lens="interests">
+            <span class="lens-media" aria-hidden="true">
+              <svg viewBox="0 0 200 150" focusable="false"><circle cx="100" cy="75" r="22"/><circle cx="100" cy="75" r="44"/><circle cx="100" cy="75" r="66"/><circle class="fill" cx="144" cy="52" r="5"/></svg>
+            </span>
+            <span class="lens-text">
+              <span class="lens-q">Tôi thích điều gì?</span>
+              <span class="lens-name">Sở thích nghề nghiệp</span>
+              <span class="lens-desc">Những hoạt động và lĩnh vực thu hút sự chú ý, hứng thú của một người.</span>
+            </span>
+          </a>
         </li>
-        <li class="lens reveal" style="--i:1">
-          <div class="lens-body">
-            <p class="lens-q">Tôi coi trọng điều gì?</p>
-            <p class="lens-name"><span class="dot dot--person" aria-hidden="true"></span>Giá trị công việc</p>
-            <p class="lens-desc">Những điều một người coi trọng khi nhìn vào trải nghiệm và ý nghĩa của công việc.</p>
-          </div>
-          <a class="btn btn--small" href="#model" data-jump-lens="values">Xem trong mô hình</a>
+        <li class="lens lens--b" data-parallax=".11">
+          <a class="lens-link" href="#model" data-jump-lens="values">
+            <span class="lens-media" aria-hidden="true">
+              <svg viewBox="0 0 200 150" focusable="false"><path d="M100 60 L100 112 M78 112 H122"/><path d="M40 70 L160 48"/><circle cx="40" cy="70" r="8"/><circle class="fill" cx="160" cy="48" r="8"/></svg>
+            </span>
+            <span class="lens-text">
+              <span class="lens-q">Tôi coi trọng điều gì?</span>
+              <span class="lens-name">Giá trị công việc</span>
+              <span class="lens-desc">Những điều một người coi trọng khi nhìn vào trải nghiệm và ý nghĩa của công việc.</span>
+            </span>
+          </a>
         </li>
-        <li class="lens reveal" style="--i:2">
-          <div class="lens-body">
-            <p class="lens-q">Tôi làm tốt điều gì?</p>
-            <p class="lens-name"><span class="dot dot--person" aria-hidden="true"></span>Năng lực</p>
-            <p class="lens-desc">Những khả năng liên quan đến việc thực hiện nhiệm vụ và yêu cầu của công việc.</p>
-          </div>
-          <a class="btn btn--small" href="#model" data-jump-lens="abilities">Xem trong mô hình</a>
+        <li class="lens lens--c" data-parallax=".03">
+          <a class="lens-link" href="#model" data-jump-lens="abilities">
+            <span class="lens-media" aria-hidden="true">
+              <svg viewBox="0 0 200 150" focusable="false"><path d="M28 118 H68 V92 H108 V66 H148 V40 H176"/><circle class="fill" cx="176" cy="40" r="5"/></svg>
+            </span>
+            <span class="lens-text">
+              <span class="lens-q">Tôi làm tốt điều gì?</span>
+              <span class="lens-name">Năng lực</span>
+              <span class="lens-desc">Những khả năng liên quan đến việc thực hiện nhiệm vụ và yêu cầu của công việc.</span>
+            </span>
+          </a>
         </li>
-        <li class="lens reveal" style="--i:3">
-          <div class="lens-body">
-            <p class="lens-q">Tôi làm việc tốt trong điều kiện nào?</p>
-            <p class="lens-name"><span class="dot dot--person" aria-hidden="true"></span>Cách làm việc</p>
-            <p class="lens-desc">Những khuynh hướng liên quan đến cách một người tiếp cận công việc và môi trường làm việc.</p>
-          </div>
-          <a class="btn btn--small" href="#model" data-jump-lens="styles">Xem trong mô hình</a>
+        <li class="lens lens--d" data-parallax=".09">
+          <a class="lens-link" href="#model" data-jump-lens="styles">
+            <span class="lens-media" aria-hidden="true">
+              <svg viewBox="0 0 200 150" focusable="false"><path d="M20 90 C 50 30, 80 30, 100 75 S 150 120, 180 60"/><circle class="fill" cx="100" cy="75" r="5"/></svg>
+            </span>
+            <span class="lens-text">
+              <span class="lens-q">Tôi làm việc tốt trong điều kiện nào?</span>
+              <span class="lens-name">Cách làm việc</span>
+              <span class="lens-desc">Những khuynh hướng liên quan đến cách một người tiếp cận công việc và môi trường làm việc.</span>
+            </span>
+          </a>
         </li>
       </ul>
     </div>
   </section>
 
+  <!-- Câu tuyên bố -->
+  <section class="statement" id="statement" data-ground="hero" aria-label="Cách đọc mô hình">
+    <div class="container statement-grid">
+      <p class="statement-text" data-lines>Không phải một công thức. Là một cách đặt câu hỏi.</p>
+      <p class="mono-text statement-side">Trang này tách những thông tin mô tả con người khỏi những thông tin mô tả công việc, rồi cho bạn khám phá mối liên hệ giữa chúng.</p>
+    </div>
+  </section>
+
   <!-- 3. Mô hình: hai phía và một mối quan hệ -->
-  <section class="section" id="model" aria-labelledby="model-title">
+  <section class="model" id="model" data-ground="model" aria-labelledby="model-title">
     <div class="container">
       <div class="section-head">
-        <h2 class="h2" id="model-title">Đặt hai phía cạnh nhau</h2>
-        <p class="lead">Một phía mô tả con người, một phía mô tả công việc. Chọn một mục ở phía nào cũng được để xem câu hỏi mà cặp đó đặt ra. Đây không phải một công thức, mà là một cách đặt câu hỏi.</p>
+        <h2 class="h2" id="model-title" data-lines>Đặt hai phía cạnh nhau</h2>
+        <p class="lead">Một phía mô tả con người, một phía mô tả công việc. Chọn một mục ở phía nào cũng được để xem câu hỏi mà cặp đó đặt ra. Cuộn xuống để xem lần lượt bốn cặp có cơ sở.</p>
       </div>
+    </div>
 
-      <div class="stage stage--field" id="field">
-        <svg class="field-svg" id="field-svg" aria-hidden="true" focusable="false">
-          <defs>
-            <linearGradient id="field-grad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0" stop-color="#f5b966"/>
-              <stop offset="1" stop-color="#74dbcd"/>
-            </linearGradient>
-          </defs>
-          <path id="field-path" class="svg-link" fill="none" stroke="url(#field-grad)"/>
-          <circle id="field-mid" class="svg-mid" r="6"/>
-        </svg>
+    <div class="model-track" id="model-track">
+      <div class="model-sticky">
+        <div class="container model-grid">
+          <div class="model-stage">
+            <div class="stage stage--field" id="field">
+              <svg class="field-svg" id="field-svg" aria-hidden="true" focusable="false">
+                <defs>
+                  <linearGradient id="field-grad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0" stop-color="#f2b45c"/><stop offset="1" stop-color="#6fd3c6"/>
+                  </linearGradient>
+                </defs>
+                <path id="field-path" class="svg-link" fill="none" stroke="url(#field-grad)"/>
+                <circle id="field-mid" class="svg-mid" r="6"/>
+              </svg>
 
-        <div class="field-col field-col--person">
-          <h3 class="field-title" id="person-title">Phía người</h3>
-          <ul class="node-list" id="person-list" aria-labelledby="person-title"></ul>
-        </div>
-        <div class="field-gap" aria-hidden="true"></div>
-        <div class="field-col field-col--work">
-          <h3 class="field-title" id="work-title">Phía công việc</h3>
-          <ul class="node-list" id="work-list" aria-labelledby="work-title"></ul>
-        </div>
+              <div class="field-col field-col--person">
+                <h3 class="field-title" id="person-title">Phía người</h3>
+                <ul class="node-list" id="person-list" aria-labelledby="person-title"></ul>
+              </div>
+              <div class="field-gap" aria-hidden="true"></div>
+              <div class="field-col field-col--work">
+                <h3 class="field-title" id="work-title">Phía công việc</h3>
+                <ul class="node-list" id="work-list" aria-labelledby="work-title"></ul>
+              </div>
 
-        <div class="field-caption">
-          <p class="pair">
-            <span class="pair-label">Đang xem</span>
-            <span class="chip chip--person" id="pair-person"></span>
-            <span class="pair-sep" aria-hidden="true">↔</span>
-            <span class="chip chip--work" id="pair-work"></span>
-          </p>
-          <p class="status" id="pair-status" data-status="linked">
-            <span class="status-glyph" aria-hidden="true"></span>
-            <span id="pair-status-text"></span>
-          </p>
+              <div class="field-caption">
+                <p class="pair">
+                  <span class="pair-label">Đang xem</span>
+                  <span class="chip chip--person" id="pair-person"></span>
+                  <span class="pair-sep" aria-hidden="true">↔</span>
+                  <span class="chip chip--work" id="pair-work"></span>
+                </p>
+                <p class="status" id="pair-status" data-status="linked">
+                  <span class="status-glyph" aria-hidden="true"></span>
+                  <span id="pair-status-text"></span>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="model-read">
+            <p class="scrub-index" aria-hidden="true"><span id="scrub-now">01</span> / 04</p>
+            <div class="reading" id="reading">
+              <p class="kicker">Câu hỏi của cặp này</p>
+              <h3 class="reading-q" id="reading-question"></h3>
+              <dl class="facts">
+                <div class="fact"><dt>Phía người</dt><dd id="fact-person"></dd></div>
+                <div class="fact"><dt>Phía công việc</dt><dd id="fact-work"></dd></div>
+                <div class="fact"><dt>Cơ sở</dt><dd><span id="fact-basis"></span> <span class="fact-sources" id="fact-sources"></span></dd></div>
+                <div class="fact"><dt>Không nên suy ra</dt><dd id="fact-limit"></dd></div>
+              </dl>
+            </div>
+          </div>
         </div>
       </div>
+    </div>
 
+    <div class="container">
       <noscript>
         <ul class="noscript-list">
           <li>Sở thích nghề nghiệp ↔ Hoạt động / nhiệm vụ</li>
@@ -200,22 +286,7 @@
           <li>Cách làm việc ↔ Bối cảnh làm việc</li>
         </ul>
       </noscript>
-
       <p class="field-note">Vị trí và đường nối trong sơ đồ chỉ để minh họa, không phải phép đo. Chỉ bốn cặp có cơ sở được vẽ. Các cặp còn lại được để mở vì trang này chưa có nguồn cho chúng.</p>
-
-      <div class="reading" id="reading">
-        <div class="reading-question">
-          <p class="kicker">Câu hỏi của cặp này</p>
-          <h3 class="reading-q" id="reading-question"></h3>
-        </div>
-        <dl class="facts">
-          <div class="fact"><dt>Phía người</dt><dd id="fact-person"></dd></div>
-          <div class="fact"><dt>Phía công việc</dt><dd id="fact-work"></dd></div>
-          <div class="fact"><dt>Cơ sở</dt><dd><span id="fact-basis"></span> <span class="fact-sources" id="fact-sources"></span></dd></div>
-          <div class="fact"><dt>Không nên suy ra</dt><dd id="fact-limit"></dd></div>
-        </dl>
-      </div>
-
       <div class="legend" aria-label="Ba mức cơ sở của một quan hệ">
         <p class="legend-title">Ba mức cơ sở</p>
         <ul class="legend-list" id="legend-list"></ul>
@@ -225,10 +296,10 @@
   </section>
 
   <!-- 4. Nghề nghiệp đọc qua bốn phía của công việc -->
-  <section class="section section--alt" id="careers" aria-labelledby="careers-title">
+  <section class="section" id="careers" data-ground="careers" aria-labelledby="careers-title">
     <div class="container">
       <div class="section-head">
-        <h2 class="h2" id="careers-title">Nghề nghiệp cũng có “tính cách”</h2>
+        <h2 class="h2" id="careers-title" data-lines>Nghề nghiệp cũng có “tính cách”</h2>
         <p class="lead">Một nghề có nhiệm vụ, bối cảnh, yêu cầu và những đặc điểm tạo nên trải nghiệm làm việc của nó. Hãy đọc nghề như một hệ thống thay vì một cái tên. Chọn thêm một lăng kính để xem câu hỏi nào đi cùng từng phần của hồ sơ.</p>
       </div>
 
@@ -251,32 +322,31 @@
   </section>
 
   <!-- 5. Phương pháp -->
-  <section class="section" id="method" aria-labelledby="method-title">
+  <section class="section" id="method" data-ground="method" aria-labelledby="method-title">
     <div class="container">
-      <div class="split">
-        <div class="split-head">
-          <h2 class="h2" id="method-title">Từ câu hỏi đến hiểu biết</h2>
-          <p class="lead">Trải nghiệm này được xây theo logic nghiên cứu: xác định khái niệm, kiểm tra nguồn, mô hình hóa thông tin rồi mới thiết kế tương tác.</p>
-        </div>
-        <ol class="steps" id="steps">
-          <li class="step">
-            <span class="step-num" aria-hidden="true">1</span>
-            <div><h3>Quan sát</h3><p>Xác định câu hỏi và những khái niệm cần nghiên cứu.</p></div>
-          </li>
-          <li class="step">
-            <span class="step-num" aria-hidden="true">2</span>
-            <div><h3>Phân tích</h3><p>Đối chiếu thuật ngữ và mối quan hệ với nguồn nghiên cứu.</p></div>
-          </li>
-          <li class="step">
-            <span class="step-num" aria-hidden="true">3</span>
-            <div><h3>Liên hệ</h3><p>Chỉ biểu diễn những quan hệ có cơ sở; phần chưa đủ bằng chứng được giữ mở.</p></div>
-          </li>
-          <li class="step">
-            <span class="step-num" aria-hidden="true">4</span>
-            <div><h3>Định hướng</h3><p>Dùng thông tin để đặt câu hỏi nghề nghiệp tốt hơn, không thay người dùng ra quyết định.</p></div>
-          </li>
-        </ol>
+      <div class="section-head">
+        <h2 class="h2" id="method-title" data-lines>Từ câu hỏi đến hiểu biết</h2>
+        <p class="lead">Trải nghiệm này được xây theo logic nghiên cứu: xác định khái niệm, kiểm tra nguồn, mô hình hóa thông tin rồi mới thiết kế tương tác.</p>
       </div>
+
+      <ol class="fold" id="fold">
+        <li class="fold-item is-open">
+          <button class="fold-btn" type="button" id="fold-b1" aria-expanded="true" aria-controls="fold-p1"><span class="fold-num">1</span><span class="fold-title">Quan sát</span></button>
+          <div class="fold-body" id="fold-p1" role="region" aria-labelledby="fold-b1"><div><p>Xác định câu hỏi và những khái niệm cần nghiên cứu.</p></div></div>
+        </li>
+        <li class="fold-item">
+          <button class="fold-btn" type="button" id="fold-b2" aria-expanded="false" aria-controls="fold-p2"><span class="fold-num">2</span><span class="fold-title">Phân tích</span></button>
+          <div class="fold-body" id="fold-p2" role="region" aria-labelledby="fold-b2"><div><p>Đối chiếu thuật ngữ và mối quan hệ với nguồn nghiên cứu.</p></div></div>
+        </li>
+        <li class="fold-item">
+          <button class="fold-btn" type="button" id="fold-b3" aria-expanded="false" aria-controls="fold-p3"><span class="fold-num">3</span><span class="fold-title">Liên hệ</span></button>
+          <div class="fold-body" id="fold-p3" role="region" aria-labelledby="fold-b3"><div><p>Chỉ biểu diễn những quan hệ có cơ sở; phần chưa đủ bằng chứng được giữ mở.</p></div></div>
+        </li>
+        <li class="fold-item">
+          <button class="fold-btn" type="button" id="fold-b4" aria-expanded="false" aria-controls="fold-p4"><span class="fold-num">4</span><span class="fold-title">Định hướng</span></button>
+          <div class="fold-body" id="fold-p4" role="region" aria-labelledby="fold-b4"><div><p>Dùng thông tin để đặt câu hỏi nghề nghiệp tốt hơn, không thay người dùng ra quyết định.</p></div></div>
+        </li>
+      </ol>
 
       <div class="method-more">
         <div class="limits">
@@ -296,49 +366,63 @@
   </section>
 
   <!-- 6. Câu hỏi tiếp theo -->
-  <section class="section section--tail" id="next" aria-labelledby="next-title">
-    <div class="container">
-      <div class="stage stage--closing">
-        <div class="closing-copy">
-          <h2 class="h2" id="next-title">Bạn không cần tìm một nghề “đúng” ngay hôm nay</h2>
-          <p class="lead">Có thể bạn chỉ cần hiểu mình rõ hơn một chút, rồi quay lại nhìn một nghề bằng những câu hỏi khác.</p>
-          <div class="closing-actions">
-            <a class="btn btn--light" href="#model">Quay lại mô hình</a>
-            <a class="btn btn--ghost-light" href="#top">Về đầu trang</a>
-          </div>
+  <section class="closing" id="next" data-ground="close" aria-labelledby="next-title">
+    <div class="container closing-grid">
+      <div class="closing-copy">
+        <h2 class="statement-text closing-title" id="next-title" data-lines>Bạn không cần tìm một nghề “đúng” ngay hôm nay</h2>
+        <p class="lead">Có thể bạn chỉ cần hiểu mình rõ hơn một chút, rồi quay lại nhìn một nghề bằng những câu hỏi khác.</p>
+        <div class="closing-actions">
+          <a class="mono-link" href="#model">Quay lại mô hình</a>
+          <a class="mono-link mono-link--quiet" href="#top">Về đầu trang</a>
         </div>
-        <div class="closing-figure" aria-hidden="true">
-          <svg class="closing-svg" viewBox="0 0 360 300" focusable="false">
-            <line class="svg-rail" x1="70" y1="50" x2="70" y2="250"/>
-            <line class="svg-rail" x1="290" y1="50" x2="290" y2="250"/>
-            <circle class="svg-dot svg-dot--person" cx="70" cy="50"  r="9"/>
-            <circle class="svg-dot svg-dot--person" cx="70" cy="117" r="9"/>
-            <circle class="svg-dot svg-dot--person" cx="70" cy="184" r="9"/>
-            <circle class="svg-dot svg-dot--person" cx="70" cy="250" r="9"/>
-            <circle class="svg-dot svg-dot--work" cx="290" cy="50"  r="9"/>
-            <circle class="svg-dot svg-dot--work" cx="290" cy="117" r="9"/>
-            <circle class="svg-dot svg-dot--work" cx="290" cy="184" r="9"/>
-            <circle class="svg-dot svg-dot--work" cx="290" cy="250" r="9"/>
-            <path class="svg-link svg-link--open" d="M79 117 C 160 117, 200 184, 281 184" pathLength="1"/>
-            <circle class="svg-open" cx="180" cy="150" r="17"/>
-            <text class="svg-question" x="180" y="157" text-anchor="middle">?</text>
-          </svg>
-        </div>
+      </div>
+      <div class="closing-figure" aria-hidden="true">
+        <svg class="closing-svg" viewBox="0 0 360 300" focusable="false">
+          <line class="svg-rail" x1="70" y1="50" x2="70" y2="250"/>
+          <line class="svg-rail" x1="290" y1="50" x2="290" y2="250"/>
+          <circle class="svg-dot svg-dot--person" cx="70" cy="50"  r="9"/>
+          <circle class="svg-dot svg-dot--person" cx="70" cy="117" r="9"/>
+          <circle class="svg-dot svg-dot--person" cx="70" cy="184" r="9"/>
+          <circle class="svg-dot svg-dot--person" cx="70" cy="250" r="9"/>
+          <circle class="svg-dot svg-dot--work" cx="290" cy="50"  r="9"/>
+          <circle class="svg-dot svg-dot--work" cx="290" cy="117" r="9"/>
+          <circle class="svg-dot svg-dot--work" cx="290" cy="184" r="9"/>
+          <circle class="svg-dot svg-dot--work" cx="290" cy="250" r="9"/>
+          <path class="svg-link svg-link--open" d="M79 117 C 160 117, 200 184, 281 184" pathLength="1"/>
+          <circle class="svg-open" cx="180" cy="150" r="17"/>
+          <text class="svg-question" x="180" y="158" text-anchor="middle">?</text>
+        </svg>
       </div>
     </div>
   </section>
 </main>
 
-<footer class="site-footer">
-  <div class="container footer-inner">
-    <p>Hiểu mình — Hiểu nghề</p>
-    <p>Trải nghiệm nghiên cứu, website tĩnh</p>
-    <a href="#top">Về đầu trang</a>
+<footer class="site-footer" data-ground="close">
+  <div class="container">
+    <div class="footer-cols">
+      <nav class="footer-col" aria-label="Điều hướng chân trang">
+        <p class="footer-label">Menu</p>
+        <a href="#lenses">Bản thân</a>
+        <a href="#model">Mô hình</a>
+        <a href="#careers">Nghề</a>
+        <a href="#method">Phương pháp</a>
+      </nav>
+      <div class="footer-col">
+        <p class="footer-label">Nguồn</p>
+        <a href="#sources">O*NET Resource Center</a>
+        <a href="#sources">Nauta (2010)</a>
+      </div>
+      <div class="footer-col">
+        <p class="footer-label">Về trang này</p>
+        <p>Trải nghiệm nghiên cứu, website tĩnh. Không chấm điểm, không gợi ý nghề.</p>
+      </div>
+    </div>
+    <div class="footer-word-wrap" aria-hidden="true"><div class="footer-word" id="footer-word">Hiểu nghề</div></div>
   </div>
 </footer>
 
 <script src="data/model-data.js"></script>
 <script src="js/main.js"></script>
-<script src="js/stream-field.js"></script>
+<script src="js/motion.js"></script>
 </body>
 </html>
